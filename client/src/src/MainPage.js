@@ -9,6 +9,7 @@ export const MainPage = () => {
   const [amountInSourceCurrency, setAmountInSourceCurrency] = useState(0)  
   const [amountInTargetCurrency, setAmountInTargetCurrency] = useState(0)
   const [currencyNames, setCurrencyNames] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,6 +24,7 @@ export const MainPage = () => {
       });
 
       setAmountInTargetCurrency(response.data);
+      setLoading(false);
 
     }catch (err){
       console.error(err);
@@ -72,7 +74,7 @@ export const MainPage = () => {
                       type="date" 
                       id={date} 
                       name={date} 
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-400 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-400 dark:focus:border-blue-400" 
                     required />
                 </div>
 
@@ -88,7 +90,7 @@ export const MainPage = () => {
                     name={sourceCurrency} 
                     id={sourceCurrency} 
                     value={sourceCurrency} 
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-400 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-400 dark:focus:border-blue-400" 
                     required>
                     <option 
                       value="">
@@ -115,7 +117,7 @@ export const MainPage = () => {
                     name={targetCurrency} 
                     id={targetCurrency} 
                     value={targetCurrency}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-400 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-400 dark:focus:border-blue-400" 
                   required>
                     <option 
                       value="">
@@ -142,19 +144,25 @@ export const MainPage = () => {
                     type="text" 
                     name={amountInSourceCurrency} 
                     id={amountInSourceCurrency} 
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder='Amount in Source Currency' 
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-400 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-400 dark:focus:border-blue-400" placeholder='Amount in Source Currency' 
                     required />
                 </div>
 
                 <button 
-                  className=' bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md '>
+                  className=' bg-blue-500 hover:bg-blue-500 text-white font-medium py-2 px-4 rounded-md '>
                     Get the Target Currency
                 </button>
 
           </form>
         </section>
+        {!loading ? (
+        <section className='mt-5 text-xl '>
+        {amountInSourceCurrency} {currencyNames[sourceCurrency]} is equals to <span className='text-blue-400 text-2xl font-bold'>{amountInTargetCurrency}</span> in {currencyNames[targetCurrency]}
+        </section>
+      ) : (
+        null
+      )}
       </div>
-      {amountInTargetCurrency}
     </div>
   )
 }
