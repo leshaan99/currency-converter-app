@@ -1,4 +1,5 @@
-import React,{ useState } from 'react'
+import React,{ useEffect, useState } from 'react';
+import axios from "axios";
 
 export const MainPage = () => {
 
@@ -7,15 +8,40 @@ export const MainPage = () => {
   const [targetCurrency, setTargetCurrency] = useState("");
   const [amountInSourceCurrency, setAmountInSourceCurrency] = useState(0)  
   const [amountInTargetCurrency, setAmountInTargetCurrency] = useState(0)
+  const [currencyNames, setCurrencyNames] = useState([]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(
-      date,
-      setSourceCurrency,
-      targetCurrency
-  )
-  }
+    try{
+      const response = await axios.get("http://localhost:7000/convert", {
+        params: {
+          date,
+          sourceCurrency,
+          targetCurrency,
+          amountInSourceCurrency,
+        },
+      });
+
+      setAmountInTargetCurrency(response.data);
+
+    }catch (err){
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    const getCurrencyNames = async() => {
+      try{
+        const response = await axios.get(
+          "http://localhost:7000/getAllCurrencies"
+        )
+        setCurrencyNames(response.data);
+      }catch(err){
+        console.error(err);
+      }
+    };
+    getCurrencyNames()
+  }, [])
 
   return (
     <div>
@@ -68,6 +94,12 @@ export const MainPage = () => {
                       value="">
                         Select Source Currency
                     </option>
+
+                    {Object.keys(currencyNames).map((currency) => (
+                      <option className='p-1' key={currency} value={currency}>
+                        {currencyNames[currency]}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
@@ -89,6 +121,12 @@ export const MainPage = () => {
                       value="">
                         Select Targey Currency
                     </option>
+
+                    {Object.keys(currencyNames).map((currency) => (
+                      <option className='p-1' key={currency} value={currency}>
+                        {currencyNames[currency]}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
@@ -116,6 +154,7 @@ export const MainPage = () => {
           </form>
         </section>
       </div>
+      {amountInTargetCurrency}
     </div>
   )
 }
