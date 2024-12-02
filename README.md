@@ -1,35 +1,31 @@
-# Currency Converter Web Application
+# Currency Time Traveler
 
-A full-stack web application for converting currencies based on today's exchange rates and historical rates. This app uses the **Open Exchange Rates** API for fetching currency data and features a responsive design.
+A full-stack web application that allows you to convert currencies based on today's exchange rates or any specific past date. Powered by the **Open Exchange Rates** API, this application offers a sleek and responsive design for a seamless experience across devices.
 
----
 
 ## Features
 
-- Convert currency based on **today's** exchange rates.
-- View and convert currency for **specific past dates**.
-- Fully responsive design for seamless usage across devices.
-- Modern and clean UI powered by **Tailwind CSS**.
-- Efficient API communication using **Axios**.
-- Built using **React** (Frontend) and **Node.js** (Backend).
+- Convert currency using **current** and **historical** exchange rates.
+- Fully responsive design for all devices.
+- Modern and clean UI with **Tailwind CSS**.
+- Efficient API communication with **Axios**.
+- Built with **React** (Frontend) and **Node.js** (Backend).
 
----
 
 ## Tech Stack
 
 ### Frontend:
-- **React**: Frontend framework.
+- **React**: Frontend library.
 - **Tailwind CSS**: Styling framework.
 - **Axios**: API communication.
 
 ### Backend:
 - **Node.js**: Backend runtime environment.
-- **Express**: Web framework for Node.js.
+- **Express**: Lightweight web framework for Node.js.
 
 ### API:
-- **Open Exchange Rates**: Used for fetching currency data.
+- **Open Exchange Rates**: Provides real-time and historical currency data.
 
----
 
 ## Setup Instructions
 
