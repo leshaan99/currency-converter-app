@@ -47,15 +47,17 @@ export const MainPage = () => {
 
   return (
     <div>
-      <h1 
-        className=' lg:mx-32 text-5xl font-bold text-blue-400 '>
+      <div>
+        <h1 
+          className=' lg:mx-32 text-5xl font-bold text-blue-400 '>
           Currency Time Traveler
-      </h1>
-      <p 
-        className=' lg:mx-32 opacity-40 py-6 '>
-          Welcome to "Currency Time Traveler"! Convert currencies instantly with live exchange rates and dive into the past or future to discover rates from specific dates. Perfect for travelers, financial planners, or the curious—your ultimate currency conversion tool.
-      </p>
-
+          </h1>
+        <p 
+          className=' lg:mx-32  opacity-40 py-6 '>
+          Welcome to "Currency Time Traveler"! Convert currencies instantly with live   exchange rates and dive into the past or future to discover rates from  specific dates. Perfect for travelers, financial planners, or the  curious—your ultimate currency conversion tool.
+        </p>
+      </div>
+      
       <div 
         className=' mt-5 flex items-center justify-center flex-col'>
           <section 
